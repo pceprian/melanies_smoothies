@@ -15,7 +15,11 @@ name_on_order = st.text_input('Name of Smoothie:')
 st.write('The name on your Smoothie will be:', name_on_order)
 
 
-#session = get_active_session()
+#session = get_active_session() #this line it is used when using SiS instead if SniS, when the "from snowflake.snowpark.context import get_active_session" is used
+
+#this lines are used when using SniS instead if SiS, when the "from snowflake.snowpark.context import get_active_session" is NOT used
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
